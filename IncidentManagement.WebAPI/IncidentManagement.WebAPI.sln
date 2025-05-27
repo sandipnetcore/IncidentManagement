@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncidentManagement.WebAPI", "IncidentManagement.WebAPI.csproj", "{A6DE5C3E-149D-438B-BAB8-60209DB088C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncidentManagement.DataModel", "..\IncidentManagement.DataModel\IncidentManagement.DataModel.csproj", "{C4768A77-5976-432A-A340-5142EE980B20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncidentManagement.EntityFrameWork", "..\IncidentManagement.DataContext\IncidentManagement.EntityFrameWork.csproj", "{47854F74-F4B9-446F-B90A-0E4EEBAAAA88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncidentManagement.BusinessLogic", "..\IncidentManagement.BusinessLogic\IncidentManagement.BusinessLogic.csproj", "{18548951-95D9-4624-A972-18BE8288DD64}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "IncidentManagement.FrontEndWithAngular", "..\IncidentManagement.FrontEndWithAngular\IncidentManagement.FrontEndWithAngular.esproj", "{6F19CF42-E221-9467-418E-56D56CAD402C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IncidentManagement.WebAPI.Test", "..\IncidentManagement.WebAPI.Test\IncidentManagement.WebAPI.Test.csproj", "{833A9A47-43B2-4134-AE4C-68865740CEC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6DE5C3E-149D-438B-BAB8-60209DB088C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6DE5C3E-149D-438B-BAB8-60209DB088C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6DE5C3E-149D-438B-BAB8-60209DB088C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6DE5C3E-149D-438B-BAB8-60209DB088C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4768A77-5976-432A-A340-5142EE980B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4768A77-5976-432A-A340-5142EE980B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4768A77-5976-432A-A340-5142EE980B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4768A77-5976-432A-A340-5142EE980B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47854F74-F4B9-446F-B90A-0E4EEBAAAA88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47854F74-F4B9-446F-B90A-0E4EEBAAAA88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47854F74-F4B9-446F-B90A-0E4EEBAAAA88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47854F74-F4B9-446F-B90A-0E4EEBAAAA88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18548951-95D9-4624-A972-18BE8288DD64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18548951-95D9-4624-A972-18BE8288DD64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18548951-95D9-4624-A972-18BE8288DD64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18548951-95D9-4624-A972-18BE8288DD64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F19CF42-E221-9467-418E-56D56CAD402C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F19CF42-E221-9467-418E-56D56CAD402C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6F19CF42-E221-9467-418E-56D56CAD402C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F19CF42-E221-9467-418E-56D56CAD402C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F19CF42-E221-9467-418E-56D56CAD402C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{833A9A47-43B2-4134-AE4C-68865740CEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833A9A47-43B2-4134-AE4C-68865740CEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833A9A47-43B2-4134-AE4C-68865740CEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833A9A47-43B2-4134-AE4C-68865740CEC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4170A047-DFC3-45A3-9DAA-B2851F662221}
+	EndGlobalSection
+EndGlobal

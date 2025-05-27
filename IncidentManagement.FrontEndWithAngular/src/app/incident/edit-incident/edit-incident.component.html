@@ -1,0 +1,41 @@
+<div class="overflow-auto" style="height:500px">
+  <ul class="list-group text-start">
+    <li class="list-group-item active" aria-current="true">Incident Details</li>
+    <li class="list-group-item"><b>Incident Title</b><br />{{incientsDetails.incidentTitle}}</li>
+    <li class="list-group-item"><b>Incident Description</b><br />{{incientsDetails.incidentDescription}}</li>
+    <li class="list-group-item"><b>Created By</b><br />{{incientsDetails.createdBy}}</li>
+    <li class="list-group-item"><b>Created On</b><br />{{incientsDetails.createdOn}}</li>
+    <li class="list-group-item"><b>Incident Status</b><br />{{incientsDetails.incidentStatus}}</li>
+    <li class="list-group-item"><b>Category</b><br />{{incientsDetails.category}}</li>
+    <li class="list-group-item">
+      <b>Comments History</b><br />
+      <span *ngFor="let item of incientsDetails.incidentComments">
+        {{item.commentText}} - <br /> By <b>{{item.userName}}</b> on <b>{{item.createdOn}}</b>
+        <br /><br />
+      </span>
+    </li>
+  </ul>
+  <br />
+  <div class="container">
+    <b>Add comments and assign</b>
+    <div class="row border">
+      <div class="col border">
+        <form [formGroup]="commentsForm" (ngSubmit)="saveComments()">
+          <div class="mb-3">
+            <textarea type="text" class="form-control" formControlName="comments" placeholder="comments"></textarea>
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" formControlName="assignedto" placeholder="user short id" />
+          </div>
+          <div class="d-grid gap-2 d-md-block">
+            <button type="submit" class="btn btn-primary"> Save Comments </button>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br />

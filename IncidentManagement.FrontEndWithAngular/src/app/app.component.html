@@ -1,0 +1,25 @@
+<app-header></app-header>
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <app-left-panel></app-left-panel>
+    </div>
+    <div class="col-md-10">
+      <app-home></app-home>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-10">
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="blue" type="ball-clip-rotate-multiple"
+             [fullScreen]="true"><p style="color: white"> Loading... </p></ngx-spinner>
+
+<router-outlet />

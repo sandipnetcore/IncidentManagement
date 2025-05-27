@@ -1,0 +1,20 @@
+<div class="appheader">
+  <div class="banner">
+    <a title="My App"><img class="applogo" src="../../assets/images/Logo/gooleLogo.jpeg" /></a>
+    <div class="bannerText">
+      <h2>My Development Application</h2>
+    </div>
+
+    <div class="headerItems">
+      <span>
+        <span *ngIf="isLoggedIn">{{userName}} | </span>
+        <a class="link" *ngIf="!isLoggedIn" (click)="showModal('login')">Login</a>
+        <a class="link" *ngIf="isLoggedIn" (click)="logout()">Log Out</a>
+      </span>
+    </div>
+
+    <app-popup-model componentName="{{componentName}}" *ngIf="isModalVisible" (close)="hideModal($event)"></app-popup-model>
+
+  </div>
+  
+</div>

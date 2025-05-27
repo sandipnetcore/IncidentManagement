@@ -1,0 +1,30 @@
+<h2>Create Incident</h2>
+<br />
+<div class="container">
+  <div class="col border">
+    <form [formGroup]="incidentForm" class="align-items-center" (ngSubmit)="createIncident()">
+      <div class="col-11">
+        <input type="text" class="form-control" formControlName="incidentTitle" placeholder="Incident Title" />
+      </div>
+
+      <div class="col-11">
+        <select class="form-control" #category (change)='onCategorySelected(category.value)'
+                formControlName="categoryId" required>
+          <option value="">Please select Value</option>
+          <option *ngFor="let category of categorylist" [value]="category.categoryId">
+            {{ category.categoryName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-11">
+        <textarea type="text" class="form-control" formControlName="incidentDescription" placeholder="Incident Description"></textarea>
+      </div>
+      <div class="d-grid gap-2 mx-auto col-2">
+        <button type="submit" class="btn btn-primary"> Submit </button>
+      </div>
+      <br />
+
+    </form>
+  </div>
+</div>

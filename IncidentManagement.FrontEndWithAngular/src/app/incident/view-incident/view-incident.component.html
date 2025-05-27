@@ -1,0 +1,30 @@
+<h2>Incident List</h2>
+<br />
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Incident Title</th>
+      <th scope="col">Incident Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Assigned To</th>
+      <th scope="col">Created On</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let incident of incidentList">
+    <tr>
+      <th scope="row"></th>
+      <td>{{ incident.incidentTitle }}</td>
+      <td>{{ incident.incidentDescription }}</td>
+      <td>{{ incident.categoryName }}</td>
+      <td>{{ incident.userName }}</td>
+      <td>{{ incident.assignedToUser }}</td>
+      <td>{{ incident.createdOn }}</td>
+      <td><a class="btn btn-primary" (click)="showModal('AddComments', incident.incidentId)">Add comment</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<app-popup-model componentName="{{componentName}}" incidentId="{{incidentId}}" *ngIf="isModalVisible" (close)="hideModal($event)"></app-popup-model>

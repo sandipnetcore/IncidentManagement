@@ -1,0 +1,18 @@
+<h2 class="custom-Headers">Login</h2>
+<div class="container">
+  <div class="row border">
+    <div class="col border">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="mb-3">
+          <input type="text" class="form-control" formControlName="userId" placeholder="User Name" />
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control" formControlName="password" placeholder="password" />
+        </div>
+        <div class="d-grid gap-2 d-md-block">
+          <button type="submit" class="btn btn-primary"> Login </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

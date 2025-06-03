@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IncidentService } from '../incident.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IncidentModel } from '../incident-model';
-import { CategoryModel } from '../category-model';
-import { IncidentStatusModel } from '../incident-status-model';
+import { CategoryModel } from '../../category/category-model';
+import { IncidentModel } from '../IncidentModels/incident-model';
+import { IncidentStatusModel } from '../IncidentModels/incident-status-model';
+import { IncidentService } from '../IncidentServices/incident.service';
+import { CategoryService } from '../../category/CategoryServices/category.service';
 
 @Component({
   selector: 'app-create-incident',
@@ -18,12 +19,11 @@ export class CreateIncidentComponent implements OnInit{
   public incidentStatusList: IncidentStatusModel[] = [];
 
 
-  constructor(private incidentService: IncidentService) { }
+  constructor(private incidentService: IncidentService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    var resultCategory = this.incidentService.getAllCategoriesTypes().subscribe(response => {
+    var resultCategory = this.categoryService.getAllCategoriesTypes().subscribe(response => {
       this.categorylist = response.result as CategoryModel[];
-
     });
 
     var resultStatus = this.incidentService.getAllStatusTypes().subscribe(response => {

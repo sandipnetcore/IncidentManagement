@@ -20,6 +20,7 @@ namespace IncidentManagement.BusinessLogic.Incident
             List<UIIncidentModel> incidents = new List<UIIncidentModel>();
             incidents = _dataContext.Incidents.
                     Where(i => i.IsActive).
+                    OrderByDescending(i => i.ModifiedOn).
                     Select(i => new UIIncidentModel()
                     {
                         IncidentId = i.IncidentId.ToString(),

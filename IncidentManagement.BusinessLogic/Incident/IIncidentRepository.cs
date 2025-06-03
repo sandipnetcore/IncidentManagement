@@ -4,7 +4,7 @@ using IncidentManagement.DataModel.User;
 
 namespace IncidentManagement.BusinessLogic.Incident
 {
-    public interface IIncidentRepository
+    public interface IIncidentRepository //: ICrudOperations<IncidentModel, UIIncidentModel>
     {
         Task<List<UIIncidentModel>> GetAllIncidents();
 

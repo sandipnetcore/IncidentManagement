@@ -31,13 +31,12 @@ builder.Services.Configure<JWTConfigurationSettings>(builder.Configuration.GetSe
 
 builder.Services.Configure<ConnectionStringConfiguration>(builder.Configuration.GetSection("DBConnectionConfigurations"));
 
-builder.Services.AddDbContext<DataContext>(conn =>
+builder.Services.AddScoped<DataContext>(info =>
 {
-    var connectionString = builder.Configuration.GetSection("DBConnectionConfigurations:IMConnString").Value;
-    conn.UseSqlServer(connectionString, mig =>
-    {
-        mig.MigrationsAssembly("IncidentManagement.WebAPI");
-    });
+    var connectionStringConfig = info.GetRequiredService<IOptions<ConnectionStringConfiguration>>();
+    var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
+    optionsBuilder.UseSqlServer(connectionStringConfig.Value.IMConnString);
+    return new DataContext(optionsBuilder.Options);
 });
 
 builder.Services.AddScoped<IAuditRepository, AuditRepository>(info =>
@@ -47,13 +46,13 @@ builder.Services.AddScoped<IAuditRepository, AuditRepository>(info =>
 });
 
 
-
 builder.Services.AddScoped<IUserRepository, UserRepository>(info =>
 {
     var dataContext = info.GetRequiredService<DataContext>();
     var jwtConfig = info.GetRequiredService<IOptions<JWTConfigurationSettings>>();
     return new UserRepository(dataContext, jwtConfig);
 });
+
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(cat =>
 {
@@ -66,6 +65,7 @@ builder.Services.AddScoped<IIncidentRepository, IncidentRepository>(inc =>
     var dataContext = inc.GetRequiredService<DataContext>();
     return new IncidentRepository(dataContext);
 });
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -106,6 +106,8 @@ app.Use(async (context, next) =>
             UserName = user.UserName,
             AuditType = "Error"
         };
+
+        await repository.Save(auditModel);
     }
 });
 

@@ -1,1 +1,20 @@
-<p>create-category works!</p>
+<h2>Create Incident</h2>
+<br />
+<div class="container">
+  <div class="col border">
+    <form [formGroup]="categoryForm" class="align-items-center" (ngSubmit)="createCategory()">
+      <div class="col-11">
+        <input type="text" class="form-control" formControlName="categoryName" placeholder="Category Name" />
+      </div>
+
+      <div class="col-11">
+        <textarea type="text" class="form-control" formControlName="categoryDescription" placeholder="Category Description"></textarea>
+      </div>
+      <div class="d-grid gap-2 mx-auto col-2">
+        <button type="submit" class="btn btn-primary"> Submit </button>
+      </div>
+      <br />
+
+    </form>
+  </div>
+</div>

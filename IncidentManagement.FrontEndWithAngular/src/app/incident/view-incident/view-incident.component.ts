@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { IncidentService } from '../incident.service';
-import { IncidentModel } from '../incident-model';
+import { IncidentModel } from '../IncidentModels/incident-model';
+import { IncidentService } from '../IncidentServices/incident.service';
 
 @Component({
   selector: 'app-view-incident',

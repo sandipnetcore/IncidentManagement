@@ -25,10 +25,9 @@ namespace IncidentManagement.DataModel.Category
         public bool IsActive { get; set; } = true;
         
         [Required]
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedOn { get; set; }
         
-        [Required]
-        public DateTime ModifiedOn { get; set; } = DateTime.UtcNow;
+        public DateTime ModifiedOn { get; set; }
 
         [Required]
         public Guid CreatedBy { get; set; }
@@ -36,12 +35,9 @@ namespace IncidentManagement.DataModel.Category
         [ForeignKey("CreatedBy")]
         public UserModel User { get; set; }
 
+        public Guid ModifiedBy { get; set; }
+
         public List<IncidentModel> Incidents { get; set; }
-        public CategoryModel()
-        {
-            CreatedOn = DateTime.UtcNow;
-            ModifiedOn = DateTime.UtcNow;
-        }
 
     }
 }

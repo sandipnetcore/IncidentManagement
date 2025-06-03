@@ -1,4 +1,5 @@
-﻿using IncidentManagement.BusinessLogic.Incident;
+﻿using IncidentManagement.BusinessLogic;
+using IncidentManagement.BusinessLogic.Incident;
 using IncidentManagement.BusinessLogic.Roles;
 using IncidentManagement.DataModel.Incident;
 using IncidentManagement.DataModel.UIModels.UIIncident;

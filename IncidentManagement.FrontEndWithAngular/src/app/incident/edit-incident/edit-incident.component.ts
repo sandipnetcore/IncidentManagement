@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IncidentService } from '../incident.service';
-import { IncidentDetailModel } from '../incident-detail-model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IncidentCommentModel } from '../incident-comment-model';
 import { Router } from '@angular/router';
+import { IncidentCommentModel } from '../IncidentModels/incident-comment-model';
+import { IncidentDetailModel } from '../IncidentModels/incident-detail-model';
+import { IncidentService } from '../IncidentServices/incident.service';
 
 @Component({
   selector: 'app-edit-incident',

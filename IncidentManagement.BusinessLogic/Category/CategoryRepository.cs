@@ -1,6 +1,7 @@
 ﻿using IncidentManagement.DataModel.Category;
 using IncidentManagement.DataModel.UIModels.UICategory;
 using IncidentManagement.EntityFrameWork.DBOperations;
+using Microsoft.EntityFrameworkCore;
 
 namespace IncidentManagement.BusinessLogic.Category
 {
@@ -13,7 +14,7 @@ namespace IncidentManagement.BusinessLogic.Category
             _dataContext = dataContext;
         }
 
-        public async Task<List<UICategoryModel>> GetAllCategories()
+        public async Task<List<UICategoryModel>> GetAllItems()
         {
             return await Task.FromResult(
                 _dataContext.Categories
@@ -22,11 +23,14 @@ namespace IncidentManagement.BusinessLogic.Category
                     {
                         CategoryId = c.CategoryId,
                         CategoryName = c.CategoryName,
+                        CategoryDescription = c.CategoryDescription,
+                        CreatedBy = c.User.UserName,
+                        CreatedOn = c.CreatedOn.ToString("dd/MMM/yyyy"),
                     }).ToList()
             );
         }
 
-        public async Task<bool> AddCategory(CategoryModel model)
+        public async Task<bool> AddItem(CategoryModel model)
         {
             bool isAdded = false;
 
@@ -45,7 +49,7 @@ namespace IncidentManagement.BusinessLogic.Category
             return await Task.FromResult<bool>(isAdded);
         }
 
-        public async Task<bool> EditCategory(CategoryModel model)
+        public async Task<bool> EditItem(CategoryModel model)
         {
             bool isUpdated = false;
 
@@ -64,10 +68,10 @@ namespace IncidentManagement.BusinessLogic.Category
             return await Task.FromResult<bool>(isUpdated);
         }
 
-        public async Task<bool> DeleteCategory(Guid modelcategoryId)
+        public async Task<bool> DeleteItem<T>(T id)
         {
             bool isDeleted = false;
-
+            var modelcategoryId = Guid.Parse(id.ToString());
             try
             {
                 var categoryModel = _dataContext.Categories.FirstOrDefault(c => c.CategoryId == modelcategoryId);
@@ -87,6 +91,18 @@ namespace IncidentManagement.BusinessLogic.Category
             }
 
             return await Task.FromResult<bool>(isDeleted);
+        }
+        
+        public async Task<UICategoryModel?> GetItemById<T>(T id)
+        {
+            var guidId = Guid.Parse(id.ToString());
+
+            return await _dataContext.Categories.Where(i=> i.IsActive && i.CategoryId == guidId).Select( i=> new UICategoryModel
+            {
+                CategoryId = guidId,
+                CategoryName = i.CategoryName,
+                
+            }).FirstOrDefaultAsync();
         }
     }
 }

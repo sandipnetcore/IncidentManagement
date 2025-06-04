@@ -1,1 +1,30 @@
-<p>delete-category works!</p>
+<h2>Delete Category</h2>
+<br />
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Category Name</th>
+      <th scope="col">Category Description</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Created On</th>
+      <th scope="col">Modified By</th>
+      <th scope="col">Modified On</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let category of categoryList">
+    <tr>
+      <th scope="row"></th>
+      <td>{{ category.categoryName}}</td>
+      <td>{{ category.categoryDescription }}</td>
+      <td>{{ category.createdBy }}</td>
+      <td>{{ category.createdOn }}</td>
+      <td>{{ category.modifiedBy }}</td>
+      <td>{{ category.modifiedOn }}</td>
+      <td><a class="btn btn-primary" (click)="deleteCategory(category.categoryId)">Delete category</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!--<app-popup-model componentName="{{componentName}}" incidentId="{{incidentId}}" *ngIf="isModalVisible" (close)="hideModal($event)"></app-popup-model>-->

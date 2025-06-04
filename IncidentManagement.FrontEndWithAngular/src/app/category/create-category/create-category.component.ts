@@ -18,7 +18,7 @@ export class CreateCategoryComponent {
     categoryDescription: new FormControl('', [
       Validators.required,
       Validators.minLength(12),
-      Validators.maxLength(20),
+      Validators.maxLength(220),
     ]),
   });
 

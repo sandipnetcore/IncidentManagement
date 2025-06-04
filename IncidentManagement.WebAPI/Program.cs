@@ -31,12 +31,22 @@ builder.Services.Configure<JWTConfigurationSettings>(builder.Configuration.GetSe
 
 builder.Services.Configure<ConnectionStringConfiguration>(builder.Configuration.GetSection("DBConnectionConfigurations"));
 
-builder.Services.AddScoped<DataContext>(info =>
+//builder.Services.AddScoped<DataContext>(info =>
+//{
+//    var connectionStringConfig = info.GetRequiredService<IOptions<ConnectionStringConfiguration>>();
+//    var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
+//    optionsBuilder.UseSqlServer(connectionStringConfig.Value.IMConnString,
+//        mig=> mig.MigrationsAssembly("IncidentManagement.WebAPI"));
+//    return new DataContext(optionsBuilder.Options);
+//});
+
+builder.Services.AddDbContext<DataContext>(conn =>
 {
-    var connectionStringConfig = info.GetRequiredService<IOptions<ConnectionStringConfiguration>>();
-    var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-    optionsBuilder.UseSqlServer(connectionStringConfig.Value.IMConnString);
-    return new DataContext(optionsBuilder.Options);
+    var connectionString = builder.Configuration.GetSection("DBConnectionConfigurations:IMConnString").Value;
+    conn.UseSqlServer(connectionString, mig =>
+    {
+        mig.MigrationsAssembly("IncidentManagement.WebAPI");
+    });
 });
 
 builder.Services.AddScoped<IAuditRepository, AuditRepository>(info =>

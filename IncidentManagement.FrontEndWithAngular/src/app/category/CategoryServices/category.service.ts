@@ -20,15 +20,16 @@ export class CategoryService {
   }
 
   public addCategoryType(model: CategoryModel): Observable<any> {
-    return this.httpClient.post<CategoryModel>(EndPointAddress.Category_AddCagtegory, model);
+    return this.httpClient.post<any>(EndPointAddress.Category_AddCagtegory, model);
   }
 
   public modifyCategoryType(model: CategoryModel): Observable<any> {
-    return this.httpClient.put<CategoryModel>(EndPointAddress.Category_ModifyCategory, model);
+    return this.httpClient.put<any>(EndPointAddress.Category_ModifyCategory, model);
   }
 
-  public deleteCategoryType(categoryId: number): Observable<any> {
-    return this.httpClient.delete<CategoryModel>(`${EndPointAddress.Category_DeleteCategory}categoryId`);
+  public deleteCategoryType(categoryId: string): Observable<any> {
+    alert(`${EndPointAddress.Category_DeleteCategory}${categoryId}`);
+    return this.httpClient.delete<any>(`${EndPointAddress.Category_DeleteCategory}${categoryId}`);
   }
 
 }

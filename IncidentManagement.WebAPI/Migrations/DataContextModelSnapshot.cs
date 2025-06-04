@@ -84,6 +84,9 @@ namespace IncidentManagement.WebAPI.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("datetime2");
 

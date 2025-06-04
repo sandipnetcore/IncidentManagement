@@ -4,6 +4,7 @@ using IncidentManagement.DataModel.Category;
 using IncidentManagement.DataModel.UIModels.UICategory;
 using IncidentManagement.WebAPI.IMAttribute;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IncidentManagement.WebAPI.Controllers
@@ -28,6 +29,7 @@ namespace IncidentManagement.WebAPI.Controllers
         }
 
         [HttpGet("GetCategory/{id}")]
+        [UserAuthorizationFilter(IncidentManagementRoles.AdminRole, IncidentManagementRoles.User)]
         public async Task<IActionResult> Get(string id)
         {
             var categoryId = Guid.Empty;
@@ -38,12 +40,13 @@ namespace IncidentManagement.WebAPI.Controllers
             }
 
 
-            var categories = await _categoryRepository.GetItemById<Guid>(categoryId);
-            return Ok(new { result = categories });
+            var category = await _categoryRepository.GetItemById<Guid>(categoryId);
+            return Ok(new { result = category });
         }
 
 
         [HttpPost("AddCategory")]
+        [UserAuthorizationFilter(IncidentManagementRoles.AdminRole, IncidentManagementRoles.User)]
         public async Task<IActionResult> Post([FromBody] UICategoryModel model)
         {
             if(ModelState.IsValid == false)
@@ -55,7 +58,8 @@ namespace IncidentManagement.WebAPI.Controllers
             {
                 CategoryId = Guid.NewGuid(),
                 CategoryName = model.CategoryName,
-                CategoryDescription = model.CategoryDescription.Trim()
+                CategoryDescription = model.CategoryDescription.Trim(),
+                CreatedBy = baseUserModel.UserId,
             };
 
             var categories = await _categoryRepository.AddItem(categoryModel);
@@ -63,7 +67,8 @@ namespace IncidentManagement.WebAPI.Controllers
         }
 
 
-        [HttpPost("ModifyCategory/{id}")]
+        [HttpPut("ModifyCategory/{id}")]
+        [UserAuthorizationFilter(IncidentManagementRoles.AdminRole, IncidentManagementRoles.User)]
         public async Task<IActionResult> Put(Guid id,[FromBody] UICategoryModel model)
         {
             if (ModelState.IsValid == false)
@@ -78,22 +83,23 @@ namespace IncidentManagement.WebAPI.Controllers
                 CategoryDescription = model.CategoryDescription.Trim()
             };
 
-            var categories = await _categoryRepository.EditItem(categoryModel);
-            return Ok(new { result = categories });
+            var result = await _categoryRepository.EditItem(categoryModel);
+            return Ok(new { result = result });
         }
 
-        [HttpPost("DeleteCategory/{id}")]
+        [HttpDelete("DeleteCategory/{id}")]
+        [UserAuthorizationFilter(IncidentManagementRoles.AdminRole, IncidentManagementRoles.User)]
         public async Task<IActionResult> Delete(string id)
         {
-            var deleteId = Guid.Empty;
-            if (Guid.TryParse(id, out deleteId))
+            var deleteId = Guid.Parse(id);
+            
+            if(deleteId == Guid.Empty)
             {
                 return BadRequest("Invalid category ID.");
             }
 
-
-            var categories = await _categoryRepository.DeleteItem(deleteId);
-            return Ok(new { result = categories });
+            var result = await _categoryRepository.DeleteItem(deleteId);
+            return Ok(new { result = result });
         }
 
 

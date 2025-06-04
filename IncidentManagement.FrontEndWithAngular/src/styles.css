@@ -11,6 +11,10 @@ body {
   color:white;
 }
 
+.leftPanel{
+    /*margin-left:-6%;*/
+}
+
 .div-shadow {
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.024) 0px 0px 0px 1px;
@@ -104,12 +108,16 @@ a.im-links {
 
 
 .appheader {
-  margin: -1% 0% 0% 0%;
+  margin: 1% 0% 0% 1%;
   padding: 1% 0% 0% 0%;
-  height: 150px;
+  height: 200px;
+  width: 97%;
   color: white;
-  background-color: #003463;
-  /* background-image: url(assets/images/onepage-slide-2.jpg); */
+  border-radius: 14px;
+  background-repeat: no-repeat;
+  box-shadow: rgba(0, 0, 0, 0.024) 0px 0px 0px 1px;
+  /*background-color: #003463;*/
+  background-image: url(assets/images/banner.png);
   .link:hover {
     color: blue;
     cursor: pointer;
@@ -147,7 +155,7 @@ a.im-links {
 
  
 .headerItems {
-  margin: -4% 5% 0% 0%;
+  margin: 4% 5% 0% 0%;
   float:right;
 
 }

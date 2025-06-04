@@ -16,16 +16,20 @@ namespace IncidentManagement.BusinessLogic.Category
 
         public async Task<List<UICategoryModel>> GetAllItems()
         {
+            var result = _dataContext.Categories.FirstOrDefault();
+
             return await Task.FromResult(
                 _dataContext.Categories
                     .Where(c => c.IsActive)
                     .Select(c => new UICategoryModel
                     {
-                        CategoryId = c.CategoryId,
+                        CategoryId = c.CategoryId.ToString(),
                         CategoryName = c.CategoryName,
                         CategoryDescription = c.CategoryDescription,
                         CreatedBy = c.User.UserName,
                         CreatedOn = c.CreatedOn.ToString("dd/MMM/yyyy"),
+                        ModifiedBy = c.ModifiedBy == Guid.Empty ? (_dataContext.Users.FirstOrDefault(u=> u.UserId == c.ModifiedBy)).UserName: "-",
+                        ModifiedOn = !c.ModifiedOn.HasValue ? "-" : c.ModifiedOn.Value.ToString("dd/MMM/yyyy"),
                     }).ToList()
             );
         }
@@ -97,11 +101,17 @@ namespace IncidentManagement.BusinessLogic.Category
         {
             var guidId = Guid.Parse(id.ToString());
 
-            return await _dataContext.Categories.Where(i=> i.IsActive && i.CategoryId == guidId).Select( i=> new UICategoryModel
+            return await _dataContext.Categories.Where(c=> c.IsActive && c.CategoryId == guidId).Select( ui=> new UICategoryModel
             {
-                CategoryId = guidId,
-                CategoryName = i.CategoryName,
-                
+                CategoryId = guidId.ToString(),
+                CategoryName = ui.CategoryName,
+                CategoryDescription = ui.CategoryDescription,
+                CreatedBy = ui.User.UserName,
+                ModifiedBy = ui.ModifiedBy == Guid.Empty ? 
+                                "-" : 
+                                _dataContext.Users.FirstOrDefault(u=> u.UserId == ui.ModifiedBy).UserName,
+                CreatedOn = ui.CreatedOn.ToString("dd/MMM/yyyy"),
+                ModifiedOn = ui.ModifiedOn.HasValue? ui.ModifiedOn.Value.ToString("dd/MMM/yyyy") : "-",
             }).FirstOrDefaultAsync();
         }
     }

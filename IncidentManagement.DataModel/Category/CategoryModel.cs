@@ -27,7 +27,7 @@ namespace IncidentManagement.DataModel.Category
         [Required]
         public DateTime CreatedOn { get; set; }
         
-        public DateTime ModifiedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
         [Required]
         public Guid CreatedBy { get; set; }
@@ -35,7 +35,7 @@ namespace IncidentManagement.DataModel.Category
         [ForeignKey("CreatedBy")]
         public UserModel User { get; set; }
 
-        public Guid ModifiedBy { get; set; }
+        public Guid? ModifiedBy { get; set; }
 
         public List<IncidentModel> Incidents { get; set; }
 
